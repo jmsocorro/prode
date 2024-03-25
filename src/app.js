@@ -1,7 +1,8 @@
 import express from "express";
+import sequelize from "./config/db.js";
 
-const app = express()
-const port = 8080
+const app = express();
+const port = 8080;
 
 app.use(express.json());
 app.use(
@@ -10,8 +11,10 @@ app.use(
   })
 );
 
-app.get('/', (req, res) =>{
-    res.json ({ message : "ok"})
-})
+app.get("/", (req, res) => {
+  res.json({ message: "ok" });
+});
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+app.listen(port, () =>
+  console.log(`Example app listening at http://localhost:${port}`)
+);
