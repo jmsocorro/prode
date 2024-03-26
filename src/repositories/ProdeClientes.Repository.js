@@ -1,14 +1,11 @@
-import ProdeCliente from "../models/ProdeClientes.Model.js";
+import { ProdeClienteDAO } from "../daos/ProdeCliente.DAO.js";
 
-class ProdeClienteRepository {
+export class ProdeClienteRepository {
   static async getAll() {
     try {
-      const clients = await ProdeCliente.findAll();
-      return clients;
+      return await ProdeCliente.getAll();
     } catch (error) {
       throw error;
     }
   }
 }
-
-export default ProdeClienteRepository;

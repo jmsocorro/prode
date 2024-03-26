@@ -15,6 +15,7 @@ try {
   await sequelize.authenticate();
   console.log("Connection has been established successfully.");
 } catch (error) {
+    console.log(config.DB_PASS)
   console.error("Unable to connect to the database:", error);
 }
 
