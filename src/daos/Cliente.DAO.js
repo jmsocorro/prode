@@ -12,10 +12,14 @@ export class ClienteDAO {
       throw error;
     }
   }
-  static async updateOne(data) {
+  static async updateOne({ClienteID, ...data}) {
     try {
-      const newRecord = await Cliente.create(data);
-      return newRecord;
+      const updatedRecord = await Cliente.findByPk(ClienteID);
+      if (!updatedRecord) {
+        throw new Error('No existe un cliente con ese ID')
+      }
+      await updatedRecord.update(data)
+      return updatedRecord;
     } catch (error) {
       throw error;
     }

@@ -1,7 +1,6 @@
 import express from "express";
 import apiClientesRoutes from "./routes/Clientes.Routers.js";
 
-
 const app = express();
 const port = 8080;
 
