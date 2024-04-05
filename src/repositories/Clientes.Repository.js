@@ -22,4 +22,11 @@ export class ClienteRepository {
             throw error;
         }
     }
+    static async deleteOne(data) {
+        try {
+            return await ClienteDAO.deleteOne(data);
+        } catch (error) {
+            throw error;
+        }
+    }
 }
