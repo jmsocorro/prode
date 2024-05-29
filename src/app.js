@@ -15,8 +15,14 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
-app.use('/api/clientes', apiClientesRoutes)
+app.use("/api/clientes", apiClientesRoutes);
 
-app.listen(port, () =>
+const httpserver = app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
 );
+
+app.get("/stop", (req, res) => {
+  httpserver.close(() => {
+    console.log("HTTP server closed");
+  });
+});
