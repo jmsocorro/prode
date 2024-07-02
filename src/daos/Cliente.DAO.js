@@ -12,6 +12,19 @@ export class ClienteDAO {
             throw error;
         }
     }
+    static async updateOne(data) {
+        try {
+          const updatedRecord = await Cliente.findByPk(data.ClienteID);
+          if (!updatedRecord) {
+            throw new Error("No existe un cliente con ese ID");
+          }
+          updatedRecord.set(data);
+          await updatedRecord.save();
+          return updatedRecord;
+        } catch (error) {
+          throw error;
+        }
+      }
     static async deleteOne({ClienteID}) {
         try {
             const deletedRecord = await Cliente.findByPk(ClienteID);
@@ -24,4 +37,17 @@ export class ClienteDAO {
             throw error;
         }
     }
+    static async findbyid(data) {
+        try {
+          const updatedRecord = await Cliente.findByPk(data);
+          if (!updatedRecord) {
+            throw new Error("No existe un cliente con ese ID");
+          }
+          updatedRecord.set(data);
+          await updatedRecord.save();
+          return updatedRecord;
+        } catch (error) {
+          throw error;
+        }
+      }
 }

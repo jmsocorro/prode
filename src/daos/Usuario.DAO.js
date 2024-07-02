@@ -16,7 +16,20 @@ export class UsuarioDAO {
             throw error;
         }
     }
-    static async deleteOne({UsuarioID}) {
+    static async updateOne(data) {
+        try {
+            const updatedRecord = await Usuario.findByPk(data.ClienteID);
+            if (!updatedRecord) {
+                throw new Error("No existe un cliente con ese ID");
+            }
+            updatedRecord.set(data);
+            await updatedRecord.save();
+            return updatedRecord;
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async deleteOne({ UsuarioID }) {
         try {
             const deletedRecord = await Usuario.findByPk(UsuarioID);
             if (!deletedRecord) {
@@ -24,6 +37,19 @@ export class UsuarioDAO {
             }
             await deletedRecord.destroy();
             return deletedRecord;
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async findbyid(data) {
+        try {
+            const updatedRecord = await Usuario.findByPk(data);
+            if (!updatedRecord) {
+                throw new Error("No existe un cliente con ese ID");
+            }
+            updatedRecord.set(data);
+            await updatedRecord.save();
+            return updatedRecord;
         } catch (error) {
             throw error;
         }
