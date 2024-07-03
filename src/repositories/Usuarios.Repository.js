@@ -3,22 +3,69 @@ import { UsuarioDAO } from "../daos/Usuario.DAO.js";
 export class UsuarioRepository {
     static async getAll() {
         try {
-            console.log("repository");
-            return await UsuarioDAO.getAll();
+            const usuarios = await UsuarioDAO.getAll();
+            const return_usuarios = usuarios.map(usuario => {
+                return {
+                    uuid: usuario.UUID,
+                    nombre: usuario.Nombre,
+                    apellido: usuario.Apellido,
+                    nick: usuario.Nick,
+                    email: usuario.email,
+                    perfil: usuario.Perfil,
+                    clienteid: usuario.ClienteID,
+                    grupoid: usuario.GrupoID,
+                    estado: usuario.Estado,
+                    puntos: usuario.Puntos,
+                    celular: usuario.Celular,
+                    posicionanterior: usuario.PosicionAnterior,
+                    posicionactual: usuario.PosicionActual,
+                }
+            });
+            return return_usuarios;
         } catch (error) {
             throw error;
         }
     }
     static async addOne(data) {
         try {
-            return await UsuarioDAO.addOne(data);
+            const usuario = await UsuarioDAO.addOne(data);
+            return {
+                uuid: usuario.UUID,
+                nombre: usuario.Nombre,
+                apellido: usuario.Apellido,
+                nick: usuario.Nick,
+                email: usuario.email,
+                perfil: usuario.Perfil,
+                clienteid: usuario.ClienteID,
+                grupoid: usuario.GrupoID,
+                estado: usuario.Estado,
+                puntos: usuario.Puntos,
+                celular: usuario.Celular,
+                posicionanterior: usuario.PosicionAnterior,
+                posicionactual: usuario.PosicionActual,
+            }
         } catch (error) {
             throw error;
         }
     }
     static async updateOne(data) {
         try {
-            return await UsuarioDAO.updateOne(data);
+            const usuario = await UsuarioDAO.updateOne(data);
+            return {
+                uuid: usuario.UUID,
+                nombre: usuario.Nombre,
+                apellido: usuario.Apellido,
+                nick: usuario.Nick,
+                email: usuario.email,
+                perfil: usuario.Perfil,
+                clienteid: usuario.ClienteID,
+                grupoid: usuario.GrupoID,
+                estado: usuario.Estado,
+                puntos: usuario.Puntos,
+                celular: usuario.Celular,
+                posicionanterior: usuario.PosicionAnterior,
+                posicionactual: usuario.PosicionActual,
+            }
         } catch (error) {
             throw error;
         }
@@ -32,7 +79,22 @@ export class UsuarioRepository {
     }
     static async findbyuuid(data) {
         try {
-            return await UsuarioDAO.findbyuuid(data);
+            const usuario = await UsuarioDAO.findbyuuid(data);
+            return {
+                uuid: usuario.UUID,
+                nombre: usuario.Nombre,
+                apellido: usuario.Apellido,
+                nick: usuario.Nick,
+                email: usuario.email,
+                perfil: usuario.Perfil,
+                clienteid: usuario.ClienteID,
+                grupoid: usuario.GrupoID,
+                estado: usuario.Estado,
+                puntos: usuario.Puntos,
+                celular: usuario.Celular,
+                posicionanterior: usuario.PosicionAnterior,
+                posicionactual: usuario.PosicionActual,
+            }
         } catch (error) {
             throw error;
         }

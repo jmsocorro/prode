@@ -3,7 +3,6 @@ import { UsuarioRepository } from "../repositories/Usuarios.Repository.js";
 export class UsuarioController {
     static async getAll(req, res) {
         try {
-            console.log("controller");
             const usuarios = await UsuarioRepository.getAll();
             res.status(200).json(usuarios);
         } catch (error) {
@@ -25,6 +24,7 @@ export class UsuarioController {
             const usuario = await UsuarioRepository.updateOne(updatedRecord);
             res.status(200).json(usuario);
         } catch (error) {
+            console.log(error)
             res.status(400).send(error);
         }
     }
@@ -34,7 +34,8 @@ export class UsuarioController {
             const usuario = await UsuarioRepository.findbyuuid(uuid);
             res.status(200).json(usuario);
         } catch (error) {
-            res.status(400).send(error);
+            console.log(error)
+            res.status(400).json({ error: 'Internal Server Error' });
         }
     }
     static async deleteOne(req, res) {

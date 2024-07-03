@@ -2,8 +2,7 @@ import Usuario from "../models/Usuarios.Model.js";
 import { hashPassword, comparePassword } from "../config/utils.js";
 
 export class UsuarioDAO {
-    static async getAll() {
-        console.log("DAO");
+    static async getAll() {        
         return await Usuario.findAll();
     }
     static async addOne(data) {
