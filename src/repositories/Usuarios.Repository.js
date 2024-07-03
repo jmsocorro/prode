@@ -30,4 +30,11 @@ export class UsuarioRepository {
             throw error;
         }
     }
+    static async findbyuuid(data) {
+        try {
+            return await UsuarioDAO.findbyuuid(data);
+        } catch (error) {
+            throw error;
+        }
+    }
 }

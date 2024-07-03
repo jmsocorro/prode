@@ -56,4 +56,17 @@ export class UsuarioDAO {
             throw error;
         }
     }
+    static async findbyuuid(data) {
+        try {
+            const updatedRecord = await Usuario.findOne({ where: { UUID: data } });;
+            if (!updatedRecord) {
+                throw new Error("No existe un usuario con ese ID");
+            }
+            updatedRecord.set(data);
+            await updatedRecord.save();
+            return updatedRecord;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

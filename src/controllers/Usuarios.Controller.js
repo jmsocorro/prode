@@ -28,6 +28,15 @@ export class UsuarioController {
             res.status(400).send(error);
         }
     }
+    static async findbyuuid(req, res) {
+        const uuid = req.params.uuid;
+        try {
+            const usuario = await UsuarioRepository.findbyuuid(uuid);
+            res.status(200).json(usuario);
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    }
     static async deleteOne(req, res) {
         const deleteRecord = req.body;
         console.log(deleteRecord);
