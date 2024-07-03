@@ -9,7 +9,6 @@ export class UsuarioDAO {
     static async addOne(data) {
         try {
             data.Clave = await hashPassword(data.Clave);
-            console.log(data.Clave);
             const newRecord = await Usuario.create(data);
             return newRecord;
         } catch (error) {
@@ -18,9 +17,12 @@ export class UsuarioDAO {
     }
     static async updateOne(data) {
         try {
-            const updatedRecord = await Usuario.findByPk(data.ClienteID);
+            const updatedRecord = await Usuario.findByPk(data.UsuarioID);
             if (!updatedRecord) {
-                throw new Error("No existe un cliente con ese ID");
+                throw new Error("No existe un usuario con ese ID");
+            }
+            if (data.Clave) {
+                data.Clave = await hashPassword(data.Clave);
             }
             updatedRecord.set(data);
             await updatedRecord.save();
@@ -45,7 +47,7 @@ export class UsuarioDAO {
         try {
             const updatedRecord = await Usuario.findByPk(data);
             if (!updatedRecord) {
-                throw new Error("No existe un cliente con ese ID");
+                throw new Error("No existe un usuario con ese ID");
             }
             updatedRecord.set(data);
             await updatedRecord.save();
