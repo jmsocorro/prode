@@ -28,14 +28,13 @@ export class UsuarioController {
             res.status(400).send(error);
         }
     }
-    static async findbyuuid(req, res) {
+    static async findbyuuid(req, res, next) {
         const uuid = req.params.uuid;
         try {
             const usuario = await UsuarioRepository.findbyuuid(uuid);
             res.status(200).json(usuario);
         } catch (error) {
-            console.log(error)
-            res.status(400).json({ error: 'Internal Server Error' });
+            next (error);
         }
     }
     static async findmailpass(req, res) {
