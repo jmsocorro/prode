@@ -1,5 +1,7 @@
 import Usuario from "../models/Usuarios.Model.js";
-import { hashPassword, comparePassword } from "../config/utils.js";
+import CustomError from "../utils/errors/customErrors.js";
+import EErrors from "../utils/errors/enums.js";
+import { hashPassword, comparePassword } from "../utils/utils.js";
 
 export class UsuarioDAO {
     static async getAll() {        
@@ -59,10 +61,14 @@ export class UsuarioDAO {
         try {
             const updatedRecord = await Usuario.findOne({ where: { UUID: data } });;
             if (!updatedRecord) {
-                throw new Error("No existe un usuario con ese ID");
+                const Error = CustomError.createError({
+                    name: "UUID inexistente",
+                    cause: "UUID inexistente",
+                    code: EErrors.NOT_FOUND,
+                    message: "UUID inexistente message"
+                });
+                throw  Error;
             }
-            updatedRecord.set(data);
-            await updatedRecord.save();
             return updatedRecord;
         } catch (error) {
             throw error;

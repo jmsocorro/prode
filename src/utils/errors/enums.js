@@ -1,0 +1,20 @@
+const EErrors = {
+    BAD_REQUEST: 400,
+    AUTHORIZATION_REQUIRED: 401,
+    PAYMENT_REQUIRED: 402,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+    METHOD_NOT_ALLOWED: 405,
+    INTERNAL_SERVER_ERROR: 500
+};
+export default EErrors;
+
+
+/*
+
+
+
+
+
+
+*/

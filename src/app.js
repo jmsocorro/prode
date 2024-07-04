@@ -3,7 +3,7 @@ import passport from "passport";
 
 import apiClientesRoutes from "./routes/Clientes.Routers.js";
 import apiUsuariosRoutes from "./routes/Usuarios.Routers.js";
-import errorMiddleware from './middleware/errorMiddleware.js';
+import errorMiddleware from './utils/errors/errorMiddleware.js';
 //import initializePassport from "./config/passport.config.js";
 
 const app = express();
