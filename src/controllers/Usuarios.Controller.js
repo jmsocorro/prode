@@ -38,6 +38,16 @@ export class UsuarioController {
             res.status(400).json({ error: 'Internal Server Error' });
         }
     }
+    static async findmailpass(req, res) {
+        const mailpass = req.body;
+        try {
+            const usuario = await UsuarioRepository.findmailpass(mailpass);
+            res.status(200).json(usuario);
+        } catch (error) {
+            console.log(error)
+            res.status(400).json({ error: 'Internal Server Error' });
+        }
+    }
     static async deleteOne(req, res) {
         const deleteRecord = req.body;
         console.log(deleteRecord);
