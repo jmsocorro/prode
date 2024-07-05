@@ -48,7 +48,13 @@ export class UsuarioDAO {
     try {
       const foundRecord = await Usuario.findByPk(data);
       if (!foundRecord) {
-        throw new Error("No existe un usuario con ese ID");
+        const Error = CustomError.createError({
+          name: "ID inexistente",
+          cause: "ID inexistente",
+          code: EErrors.NOT_FOUND,
+          message: "ID inexistente",
+        });
+        throw Error;
       }
       return foundRecord;
     } catch (error) {
