@@ -29,7 +29,6 @@ export class ClienteController {
     }
     static async deleteOne(req, res) {
         const deleteRecord = req.body;
-        console.log(deleteRecord);
         try {
             const clienteborrado = await ClienteRepository.deleteOne(
                 deleteRecord,

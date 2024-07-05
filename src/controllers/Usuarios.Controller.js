@@ -1,4 +1,7 @@
 import { UsuarioRepository } from "../repositories/Usuarios.Repository.js";
+import { createLogger } from "../utils/utils.js";
+
+const logger = createLogger();
 
 export class UsuarioController {
     static async getAll(req, res) {
@@ -24,7 +27,7 @@ export class UsuarioController {
             const usuario = await UsuarioRepository.updateOne(updatedRecord);
             res.status(200).json(usuario);
         } catch (error) {
-            console.log(error)
+            logger.error(error)
             res.status(400).send(error);
         }
     }
@@ -43,13 +46,12 @@ export class UsuarioController {
             const usuario = await UsuarioRepository.findmailpass(mailpass);
             res.status(200).json(usuario);
         } catch (error) {
-            console.log(error)
+            logger.error(error)
             res.status(400).json({ error: 'Internal Server Error' });
         }
     }
     static async deleteOne(req, res) {
         const deleteRecord = req.body;
-        console.log(deleteRecord);
         try {
             const usuarioborrado = await UsuarioRepository.deleteOne(
                 deleteRecord,

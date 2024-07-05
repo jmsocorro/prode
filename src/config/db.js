@@ -1,5 +1,8 @@
 import { Sequelize } from "sequelize";
 import config from "./config.js";
+import { createLogger } from "../utils/utils.js";
+
+const logger = createLogger("database");
 
 const sequelize = new Sequelize(
   config.DB_NAME,
@@ -13,10 +16,9 @@ const sequelize = new Sequelize(
 
 try {
   await sequelize.authenticate();
-  console.log("Connection has been established successfully.");
+  logger.info("Connection has been established successfully.");
 } catch (error) {
-    console.log(config.DB_PASS)
-  console.error("Unable to connect to the database:", error);
+  logger.error("Unable to connect to the database: ", error);
 }
 
 export default sequelize;
