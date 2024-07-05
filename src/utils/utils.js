@@ -27,7 +27,7 @@ export const createLogger = () => {
             transports: [
                 new winston.transports.File({ 
                     filename: "./src/logs/log.log",
-                    level: "info",
+                    level: "warn",
                     format: winston.format.json(),
                 }),
             ],
@@ -46,7 +46,7 @@ export const createLogger = () => {
             },
             transports: [
                 new winston.transports.Console({
-                    level: "warn",
+                    level: "trace",
                     format: winston.format.simple(),
                 }),
             ],

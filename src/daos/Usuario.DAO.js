@@ -78,11 +78,23 @@ export class UsuarioDAO {
         where: { email: data.email },
       });
       if (!foundRecord) {
-        throw new Error("No existe un usuario con ese ID");
+        const Error = CustomError.createError({
+          name: "Correo inexistente",
+          cause: "Correo inexistente",
+          code: EErrors.NOT_FOUND,
+          message: "Correo inexistente",
+        });
+        throw Error;
       }
       const claveOK = await comparePassword(data.Clave, foundRecord.Clave);
       if (!claveOK) {
-        throw new Error("Clave incorrecta");
+        const Error = CustomError.createError({
+          name: "Clave incorrecta",
+          cause: "Clave uncorrecta",
+          code: EErrors.AUTHORIZATION_REQUIRED,
+          message: "Clave incorrecta",
+        });
+        throw Error;
       }
       return foundRecord;
     } catch (error) {
