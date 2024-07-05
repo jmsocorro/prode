@@ -46,7 +46,7 @@ export const createLogger = () => {
             },
             transports: [
                 new winston.transports.Console({
-                    level: "debug",
+                    level: "warn",
                     format: winston.format.simple(),
                 }),
             ],
